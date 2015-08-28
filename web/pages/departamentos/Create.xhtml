@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+
+        <ui:define name="body">
+            <form jsf:id="createDepartamentoForm">
+                <input type="text"
+                       placeholder="Id Departamento"
+                       required="true"
+                       jsf:value="#{departamentoController.selectedDepartamento.idDepartamento}">
+                </input>
+                <input type="text"
+                       placeholder="Nombre Departamento"
+                       required="true"
+                       jsf:value="#{departamentoController.selectedDepartamento.nombreDepartamento}">
+                </input>
+                <select jsf:value="#{departamentoController.idPais}" required="true" size="1">
+                    <f:selectItem itemLabel="Seleccione uno..."/>
+                    <f:selectItems value="#{paisController.itemsPais}"
+                                   var="pais"
+                                   itemValue="#{pais.idPais}"
+                                   itemLabel="#{pais.nombrePais}"/>
+                </select>
+
+                <button type="submit" 
+                        jsf:actionListener="#{departamentoController.create}" 
+                        jsf:action="List">
+                    Guardar
+                </button>
+                <button type="button" 
+                        jsf:outcome="List">
+                    Cancelar
+                </button>
+            </form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+
+        <ui:define name="body">
+            <form jsf:id="createTipoServicioForm">
+                <input type="text"
+                       placeholder="Id Tipo Servicio"
+                       required="true"
+                       jsf:value="#{tipoServicioController.selectedTipoServicio.idTipoServicio}">
+                </input>
+                <input type="text"
+                       placeholder="Nombre Tipo Servicio"
+                       required="true"
+                       jsf:value="#{tipoServicioController.selectedTipoServicio.nombre}">
+                </input>
+                <button type="submit" 
+                        jsf:actionListener="#{tipoServicioController.create}" 
+                        jsf:action="List">
+                    Guardar
+                </button>
+                <button type="button" 
+                        jsf:outcome="List">
+                    Cancelar
+                </button>
+            </form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>
