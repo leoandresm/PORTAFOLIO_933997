@@ -1,11 +1,13 @@
 package com.example.portafolio.jpa.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,9 @@ public class TipoServicio implements Serializable {
     private short idTipoServicio;
 
     private String nombre;
+    
+    @OneToMany(mappedBy = "tipoServicio")
+    private List<Servicio> servicios;
 
     public TipoServicio() {
     }
@@ -44,6 +49,14 @@ public class TipoServicio implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
     }
 
 }

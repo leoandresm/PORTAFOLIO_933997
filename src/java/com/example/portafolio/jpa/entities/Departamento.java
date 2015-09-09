@@ -27,9 +27,9 @@ public class Departamento implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "id_pais")
-    private Pais idPais;
+    private Pais pais;
     
-    @OneToMany(mappedBy = "idDepartamento")
+    @OneToMany(mappedBy = "departamento")
     private List<Ciudad> ciudades;
     
 
@@ -56,12 +56,12 @@ public class Departamento implements Serializable {
         this.nombreDepartamento = nombreDepartamento;
     }
 
-    public Pais getIdPais() {
-        return idPais;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public List<Ciudad> getCiudades() {

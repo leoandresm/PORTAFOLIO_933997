@@ -32,7 +32,7 @@ public class Ciudad implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name = "id_departamento")
-    private Departamento idDepartamento;
+    private Departamento departamento;
 
     @Column(name = "nombre_ciudad")
     private String nombreCiudad;
@@ -40,20 +40,23 @@ public class Ciudad implements Serializable {
     @OneToMany(mappedBy = "ciudad")
     private List<Usuario> usuarios;
     
+    @OneToMany(mappedBy = "ciudad")
+    private List<Sede> sedes;
+    
     public Ciudad() {
     }
 
     public Ciudad(int idCiudad, Departamento idDepartamento) {
         this.idCiudad = idCiudad;
-        this.idDepartamento = idDepartamento;
+        this.departamento = idDepartamento;
     }
     
-    public Departamento getIdDepartamento() {
-        return idDepartamento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setIdDepartamento(Departamento idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
    
     public int getIdCiudad() {
@@ -78,6 +81,14 @@ public class Ciudad implements Serializable {
 
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+    public List<Sede> getSedes() {
+        return sedes;
+    }
+
+    public void setSedes(List<Sede> sedes) {
+        this.sedes = sedes;
     }
 
 }

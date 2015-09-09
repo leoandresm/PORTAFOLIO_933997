@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <h:head>
+        <title>Portafolio</title>
+    </h:head>
+    <h:body>
+        <form jsf:id="loginForm">
+            <input type="email"
+                   placeholder="Correo Electrónico"
+                   required="true"
+                   jsf:value="#{loginController.username}">
+            </input>
+            <input type="password"
+                   placeholder="Contraseña"
+                   required="true"
+                   jsf:value="#{loginController.password}">
+            </input>
+            <button type="submit" 
+                    jsf:action="#{loginController.login}">
+                Ingresar
+            </button>
+        </form>
+        <script type="text/javascript">
+            if (#{loginController.authenticated}) {
+                window.location = "#{request.contextPath}/faces/index.xhtml";
+            }
+        </script>
+    </h:body>
+</html>
+

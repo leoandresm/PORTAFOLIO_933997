@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+
+        <ui:define name="content">
+            <button type="button"
+                    jsf:outcome="Create">
+                Crear Usuario
+            </button>
+            <button type="button"
+                    jsf:outcome="/index">
+                Inicio
+            </button>
+            <p:dataTable value="#{usuarioController.itemsUsuario}" 
+                         var="itemUsuario"
+                         rows="10"
+                         paginator="true">
+                <p:column headerText="Nombres">
+                    <h:outputText value="#{itemUsuario.nombres}"/>
+                </p:column>
+                <p:column headerText="Apellidos">
+                    <h:outputText value="#{itemUsuario.apellidos}"/>
+                </p:column>
+                <p:column headerText="Correo Electrónico">
+                    <h:outputText value="#{itemUsuario.email}"/>
+                </p:column>                
+            </p:dataTable>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

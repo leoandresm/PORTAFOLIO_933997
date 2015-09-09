@@ -1,6 +1,7 @@
 package com.example.portafolio.jpa.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "SERVICIOS")
-public class Servicios implements Serializable {
+public class Servicio implements Serializable {
 
     @Id //Clave Primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Clave Primaria Autoincrementable
@@ -31,8 +33,18 @@ public class Servicios implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_servicio")
-    private TipoServicio idTipoServicio;
+    private TipoServicio tipoServicio;
+    
+    @OneToMany(mappedBy = "servicio")
+    private List<CalificacionServicio> calificacionesServicios;
 
+    public Servicio() {
+    }
+
+    public Servicio(int idServicio) {
+        this.idServicio = idServicio;
+    }
+    
     public int getIdServicio() {
         return idServicio;
     }
@@ -65,11 +77,20 @@ public class Servicios implements Serializable {
         this.valor = valor;
     }
 
-    public TipoServicio getIdTipoServicio() {
-        return idTipoServicio;
+    public TipoServicio getTipoServicio() {
+        return tipoServicio;
     }
 
-    public void setIdTipoServicio(TipoServicio idTipoServicio) {
-        this.idTipoServicio = idTipoServicio;
+    public void setTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
     }
+
+    public List<CalificacionServicio> getCalificacionesServicios() {
+        return calificacionesServicios;
+    }
+
+    public void setCalificacionesServicios(List<CalificacionServicio> calificacionesServicios) {
+        this.calificacionesServicios = calificacionesServicios;
+    }
+    
 }

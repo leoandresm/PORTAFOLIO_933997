@@ -8,12 +8,15 @@
 
     <ui:composition template="/WEB-INF/template.xhtml">
 
-        <ui:define name="body">
+        <ui:define name="content">
             <button type="button"
                     jsf:outcome="Create">
-                        Crear Tipo Servicio
+                Crear Tipo Servicio
             </button>
-            <br/>
+            <button type="button"
+                    jsf:outcome="/index">
+                Inicio
+            </button><br/>
             <p:dataTable value="#{tipoServicioController.itemsTipoServicio}"
                          var="tipoServicio"
                          rows="10"

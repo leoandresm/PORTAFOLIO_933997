@@ -7,11 +7,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
     <ui:composition template="/WEB-INF/template.xhtml">
-        <ui:define name="body">
+        <ui:define name="content">
             <button type="button" 
                     jsf:outcome="Create">
                 Crear
-            </button> <br/>
+            </button>
+            <button type="button"
+                    jsf:outcome="/index">
+                        Inicio
+            </button><br/>
             <p:dataTable value="#{ciudadController.itemsCiudad}" 
                          var="itemCiudad"
                          rows="10"
@@ -23,7 +27,7 @@
                     <h:outputText value="#{itemCiudad.nombreCiudad}"/>
                 </p:column>
                 <p:column headerText="Nombre Departamento">
-                    <h:outputText value="#{itemCiudad.idDepartamento.nombreDepartamento}"/>
+                    <h:outputText value="#{itemCiudad.departamento.nombreDepartamento}"/>
                 </p:column>                
             </p:dataTable>
         </ui:define>

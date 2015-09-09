@@ -5,8 +5,7 @@
  */
 package com.example.portafolio.jpa.sessions;
 
-
-import com.example.portafolio.jpa.entities.Ciudad;
+import com.example.portafolio.jpa.entities.Sede;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,27 +17,28 @@ import javax.persistence.criteria.CriteriaQuery;
  * @author leoandresm
  */
 @Stateless
-public class CiudadSession {
+public class SedeSession {
 
    @PersistenceContext
    private EntityManager entityManager;
    
-   public void create(Ciudad ciudad) {
-       entityManager.persist(ciudad);
+   public void create(Sede sede){
+       entityManager.persist(sede);
+   }  
+   
+   public void edit(Sede sede) {
+       entityManager.merge(sede);
    }
    
-   public void edit(Ciudad ciudad) {
-       entityManager.merge(ciudad);
+   public void remove(Sede sede) {
+       entityManager.remove(sede);
    }
    
-   public void remove(Ciudad ciudad) {
-       entityManager.remove(ciudad);
-   }
-   
-   public List<Ciudad> findAll() {
-       CriteriaQuery cq = 
+   public List<Sede> findAll(){
+       CriteriaQuery cq =
                entityManager.getCriteriaBuilder().createQuery();
-       cq.select(cq.from(Ciudad.class));
+       cq.select(cq.from(Sede.class));
        return entityManager.createQuery(cq).getResultList();
    }
+           
 }

@@ -11,15 +11,15 @@ import com.example.portafolio.jpa.sessions.CiudadSession;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 
 /**
  *
  * @author leoandresm
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class CiudadController implements Serializable {
 
@@ -69,7 +69,7 @@ public class CiudadController implements Serializable {
     
     public void create(){
         try {
-            selectedCiudad.setIdDepartamento(new Departamento(idDepartamento));
+            selectedCiudad.setDepartamento(new Departamento(idDepartamento));
             getCiudadSession().create(selectedCiudad);
         } catch (Exception ex) {
              System.err.println(ex.getMessage());

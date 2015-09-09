@@ -7,35 +7,36 @@ package com.example.portafolio.jsf.controllers;
 
 import com.example.portafolio.jpa.entities.Ciudad;
 import com.example.portafolio.jpa.entities.Departamento;
-import com.example.portafolio.jpa.entities.Usuario;
-import com.example.portafolio.jpa.entities.Pais;
 import com.example.portafolio.jpa.entities.Rol;
+import com.example.portafolio.jpa.entities.Usuario;
 import com.example.portafolio.jpa.sessions.UsuarioSession;
 import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.faces.bean.ViewScoped;
 import java.util.List;
 import java.util.StringTokenizer;
-import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
-
+import javax.faces.bean.ManagedBean;
 
 /**
  *
  * @author leoandresm
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class UsuarioController implements Serializable {
 
-    @EJB //Enterprise Java Beans
+    @EJB
     private UsuarioSession usuarioSession;
-    
+
     private Usuario selectedUsuario;
     private int idCiudad;
     private int idDepartamento;
     private String idRol;
     private List<Usuario> itemsUsuario = null;
-    
+
+    /**
+     * Creates a new instance of UsuarioController
+     */
     public UsuarioController() {
     }
 
@@ -74,7 +75,7 @@ public class UsuarioController implements Serializable {
 
     public List<Usuario> getItemsUsuario() {
         if (itemsUsuario == null) {
-            try {
+             try {
                 itemsUsuario = getUsuarioSession().findAll();
             } catch (Exception ex){
                 System.err.println(ex.getMessage());
@@ -82,7 +83,7 @@ public class UsuarioController implements Serializable {
         }
         return itemsUsuario;
     }
-    
+
     public void create(){
         try {
             selectedUsuario.setCiudad(new Ciudad(idCiudad, new Departamento(idDepartamento)));
@@ -92,14 +93,4 @@ public class UsuarioController implements Serializable {
              System.err.println(ex.getMessage());
         }
     }
-    
-    public void remove(){
-        try {
-            getUsuarioSession().remove(selectedUsuario);
-            itemsUsuario = null;
-        } catch (Exception ex) {
-             System.err.println(ex.getMessage());
-        }
-    }
-    
 }

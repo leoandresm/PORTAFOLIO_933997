@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/WEB-INF/template.xhtml">
 
-        <ui:define name="body">
+        <ui:define name="content">
             <form jsf:id="createDepartamentoForm">
                 <input type="text"
                        placeholder="Id Departamento"
@@ -19,14 +20,17 @@
                        required="true"
                        jsf:value="#{departamentoController.selectedDepartamento.nombreDepartamento}">
                 </input>
-                <select jsf:value="#{departamentoController.idPais}" required="true" size="1">
+                
+                <select jsf:value="#{departamentoController.idPais}" 
+                        required="true" 
+                        size="1">
                     <f:selectItem itemLabel="Seleccione uno..."/>
                     <f:selectItems value="#{paisController.itemsPais}"
                                    var="pais"
                                    itemValue="#{pais.idPais}"
                                    itemLabel="#{pais.nombrePais}"/>
                 </select>
-
+                
                 <button type="submit" 
                         jsf:actionListener="#{departamentoController.create}" 
                         jsf:action="List">
@@ -40,5 +44,4 @@
         </ui:define>
 
     </ui:composition>
-
 </html>

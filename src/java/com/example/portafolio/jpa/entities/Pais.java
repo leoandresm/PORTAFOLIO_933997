@@ -30,7 +30,7 @@ public class Pais implements Serializable {
     @Size(max = 60)
     private String nombrePais;
     
-    @OneToMany(mappedBy = "idPais")
+    @OneToMany(mappedBy = "pais")
     private List<Departamento> departamentos;
 
     public Pais() {

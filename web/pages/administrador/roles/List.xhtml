@@ -8,12 +8,15 @@
 
     <ui:composition template="/WEB-INF/template.xhtml">
 
-        <ui:define name="body">
+        <ui:define name="content">
             <button type="button"
                     jsf:outcome="Create">
-                        Crear Rol
+                Crear Rol
             </button>
-            <br/>
+            <button type="button"
+                    jsf:outcome="/index">
+                Inicio
+            </button><br/>
             <p:dataTable value="#{rolController.itemsRol}"
                          var="rol"
                          rows="10"

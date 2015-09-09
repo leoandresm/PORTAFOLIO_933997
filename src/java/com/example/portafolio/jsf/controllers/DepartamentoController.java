@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.example.portafolio.jsf.controllers;
 
 import com.example.portafolio.jpa.entities.Departamento;
@@ -11,25 +6,27 @@ import com.example.portafolio.jpa.sessions.DepartamentoSession;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
-
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author leoandresm
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class DepartamentoController implements Serializable {
-
+    
     @EJB //Enterprise Java Beans
     private DepartamentoSession departamentoSession;
     
     private Departamento selectedDepartamento;
-    private String idPais;
     private List<Departamento> itemsDepartamento = null;
-    
+    private String idPais;
+
+    /**
+     * Creates a new instance of DepartamentoController
+     */
     public DepartamentoController() {
     }
 
@@ -55,34 +52,24 @@ public class DepartamentoController implements Serializable {
     public DepartamentoSession getDepartamentoSession() {
         return departamentoSession;
     }
+    
+    public void create () {
+        try {
+            selectedDepartamento.setPais(new Pais(idPais));
+            getDepartamentoSession().create(selectedDepartamento);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
 
     public List<Departamento> getItemsDepartamento() {
         if (itemsDepartamento == null) {
             try {
                 itemsDepartamento = getDepartamentoSession().findAll();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         }
         return itemsDepartamento;
-    }
-    
-    public void create(){
-        try {
-            selectedDepartamento.setIdPais(new Pais(idPais));
-            getDepartamentoSession().create(selectedDepartamento);
-        } catch (Exception ex) {
-             System.err.println(ex.getMessage());
-        }
-    }
-    
-    public void remove(){
-        try {
-            getDepartamentoSession().remove(selectedDepartamento);
-            itemsDepartamento = null;
-        } catch (Exception ex) {
-             System.err.println(ex.getMessage());
-        }
-    }
-    
+    }    
 }

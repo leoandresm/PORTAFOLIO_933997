@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+
+        <ui:define name="content">
+            <form jsf:id="usuarioCreateForm">
+                <input type="text"
+                       placeholder="Nombres"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.nombres}"/>
+                <input type="text"
+                       placeholder="Apellidos"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.apellidos}"/>
+                <input type="tel"
+                       placeholder="Teléfono"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.telefono}"/>
+                <input type="text"
+                       placeholder="Dirección"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.direccion}"/>
+                <select jsf:value="#{usuarioController.ciudad}"
+                        required="true"
+                        size="1">
+                    <f:selectItem itemLabel="Ciudad"/>
+                    <f:selectItems value="#{ciudadController.itemsCiudad}"
+                                   var="ciudad"
+                                   itemLabel="#{ciudad.nombreCiudad}"
+                                   itemValue="#{ciudad.idCiudad},#{ciudad.departamento.idDepartamento}"/>
+                </select>
+                <input type="email"
+                       placeholder="Correo Electrónico"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.email}"/>
+                <input type="date"
+                       placeholder="Fecha Nacimiento"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.fechaNac}">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </input>
+                <select jsf:value="#{usuarioController.selectedUsuario.sexo}"
+                        required="true"
+                        size="1">
+                    <f:selectItem itemLabel="Sexo"/>
+                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                </select>
+                <input type="password"
+                       placeholder="Contraseña"
+                       required="true"
+                       jsf:value="#{usuarioController.selectedUsuario.password}"/>
+                <select jsf:value="#{usuarioController.idRol}"
+                        required="true"
+                        size="1">
+                    <f:selectItem itemLabel="Rol"/>
+                    <f:selectItems value="#{rolController.itemsRol}"
+                                   var="rol"
+                                   itemLabel="#{rol.nombreRol}"
+                                   itemValue="#{rol.idRol}"/>
+                </select>
+
+                <button type="submit" 
+                        jsf:actionListener="#{usuarioController.create}" 
+                        jsf:action="List">
+                    Guardar
+                </button>
+                <button type="button" 
+                        jsf:outcome="List">
+                    Cancelar
+                </button>
+
+
+            </form>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

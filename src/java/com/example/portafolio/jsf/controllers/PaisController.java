@@ -10,25 +10,23 @@ import com.example.portafolio.jpa.sessions.PaisSession;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
-
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author leoandresm
  */
-@Named
+@ManagedBean
 @ViewScoped
 public class PaisController implements Serializable {
 
     @EJB //Enterprise Java Beans
     private PaisSession paisSession;
-    
+
     private Pais selectedPais;
     private List<Pais> itemsPais = null;
-    private List<Pais> filteredPais;
-    
+
     public PaisController() {
     }
 
@@ -51,28 +49,19 @@ public class PaisController implements Serializable {
         if (itemsPais == null) {
             try {
                 itemsPais = getPaisSession().findAll();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 System.err.println(ex.getMessage());
             }
         }
         return itemsPais;
     }
-    
-    public void create(){
+
+    public void create() {
         try {
             getPaisSession().create(selectedPais);
         } catch (Exception ex) {
-             System.err.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
-    
-    public void remove(){
-        try {
-            getPaisSession().remove(selectedPais);
-            itemsPais = null;
-        } catch (Exception ex) {
-             System.err.println(ex.getMessage());
-        }
-    }
-    
+
 }
